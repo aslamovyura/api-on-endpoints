@@ -16,4 +16,9 @@
     <Folder Include="Logging\" />
     <Folder Include="Services\" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Ardalis.Specification.EntityFrameworkCore" Version="4.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.4" />
+  </ItemGroup>
 </Project>

@@ -1,11 +1,11 @@
-﻿using ApplicationCore.Entities.PostAggregate;
-using ApplicationCore.Interfaces;
+﻿using ApplicationCore.Interfaces;
 using Ardalis.GuardClauses;
 
-namespace ApplicationCore.Entities
+namespace ApplicationCore.Entities.PostAggregate
 {
     public class Post : BaseEntity, IAggregateRoot
     {
+        public int TopicId { get; set; }
         public Topic Topic { get; private set; }
         public string Title { get; set; }
         public string Content { get; set; }
@@ -18,6 +18,7 @@ namespace ApplicationCore.Entities
             Guard.Against.NullOrEmpty(title, nameof(title));
             Guard.Against.NullOrEmpty(content, nameof(content));
 
+            TopicId = topic.Id;
             Topic = topic;
             Title = title;
             Content = content;
