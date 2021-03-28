@@ -11,11 +11,17 @@ namespace Infrastructure.Data.Config
             builder.HasKey(c => c.Id);
             builder.Property(c => c.Id).IsRequired();
 
-            var authorNavigation = builder.Metadata.FindNavigation(nameof(Comment.Author));
-            authorNavigation.SetPropertyAccessMode(PropertyAccessMode.Field);
+            builder.HasOne(c => c.Author);
+            builder.Property(c => c.AuthorId).IsRequired();
 
-            var postNavigation = builder.Metadata.FindNavigation(nameof(Comment.Post));
-            postNavigation.SetPropertyAccessMode(PropertyAccessMode.Field);
+            builder.HasOne(c => c.Post);
+            builder.Property(c => c.PostId).IsRequired();
+
+            //var authorNavigation = builder.Metadata.FindNavigation(nameof(Comment.Author));
+            //authorNavigation.SetPropertyAccessMode(PropertyAccessMode.Field);
+
+            //var postNavigation = builder.Metadata.FindNavigation(nameof(Comment.Post));
+            //postNavigation.SetPropertyAccessMode(PropertyAccessMode.Field);
         }
     }
 }

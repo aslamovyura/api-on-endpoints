@@ -1,12 +1,13 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using ApplicationCore.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ApplicationCore
 {
     public static class ApplicationDependencyInjection
     {
-        public static void AddApplicationCore(this IServiceCollection services)
+        public static void AddApplicationCoreServices(this IServiceCollection services)
         {
-
+            
         }
     }
 }

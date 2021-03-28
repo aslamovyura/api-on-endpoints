@@ -12,10 +12,10 @@ namespace ApplicationCore.Entities.AuthorAggregate
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime BirthDate { get; set; }
-        public int? AddressId { get; set; }
-        public Address Address { get; set; }
+        //public int AddressId { get; set; }
 
-        public IEnumerable<Post> Posts { get; set; }
+        public Address Address { get; set; }
+        public List<Post> Posts { get; set; }
 
         private Author() { }
 
@@ -30,16 +30,15 @@ namespace ApplicationCore.Entities.AuthorAggregate
             BirthDate = birthDate;
         }
 
-
         public Author(string firstName, string lastName, DateTime birthDate, Address address)
             : this(firstName, lastName, birthDate)
         {
             Guard.Against.Null(address, nameof(address));
-            AddressId = address.Id;
+            //AddressId = address.Id;
             Address = address;
         }
 
-        public Author(string firstName, string lastName, DateTime birthDate, Address address, IEnumerable<Post> posts)
+        public Author(string firstName, string lastName, DateTime birthDate, Address address, List<Post> posts)
             : this(firstName, lastName, birthDate, address)
         {
             Guard.Against.Null(posts, nameof(posts));

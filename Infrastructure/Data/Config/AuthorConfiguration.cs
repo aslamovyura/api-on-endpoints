@@ -8,11 +8,13 @@ namespace Infrastructure.Data.Config
     {
         public void Configure(EntityTypeBuilder<Author> builder)
         {
-            builder.HasKey(c => c.Id);
-            builder.Property(c => c.Id).IsRequired();
+            builder.HasKey(a => a.Id);
+            builder.Property(a => a.Id).IsRequired();
 
-            var navigation = builder.Metadata.FindNavigation(nameof(Author.Address));
-            navigation.SetPropertyAccessMode(PropertyAccessMode.Field);
+            builder.HasOne(a => a.Address);
+
+            //var navigation = builder.Metadata.FindNavigation(nameof(Author.Address));
+            //navigation.SetPropertyAccessMode(PropertyAccessMode.Field);
         }
     }
 }

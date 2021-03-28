@@ -1,10 +1,11 @@
 ﻿using System;
 using ApplicationCore.Entities.AuthorAggregate;
+using ApplicationCore.Interfaces;
 using Ardalis.GuardClauses;
 
 namespace ApplicationCore.Entities.PostAggregate
 {
-    public class Comment: BaseEntity
+    public class Comment: BaseEntity, IAggregateRoot
     {
         public int AuthorId { get; set; }
         public Author Author { get; private set; }
@@ -15,17 +16,19 @@ namespace ApplicationCore.Entities.PostAggregate
 
         private Comment() { }
 
-        public Comment(Author author, Post post, DateTime createdAt, string content)
+        public Comment(int authorId, int postId, DateTime createdAt, string content)
         {
-            Guard.Against.Null(author, nameof(author));
-            Guard.Against.Null(post, nameof(post));
+            //Guard.Against.Null(author, nameof(author));
+            //Guard.Against.Null(post, nameof(post));
             Guard.Against.OutOfRange(createdAt, nameof(createdAt), DateTime.Parse("01-01-1900"), DateTime.Now);
             Guard.Against.NullOrEmpty(content, nameof(content));
 
-            AuthorId = author.Id;
-            Author = author;
-            PostId = post.Id;
-            Post = post;
+            //AuthorId = author.Id;
+            //Author = author;
+            //PostId = post.Id;
+            //Post = post;
+            AuthorId = authorId;
+            PostId = postId;
             CreatedAt = createdAt;
             Content = content;
         }

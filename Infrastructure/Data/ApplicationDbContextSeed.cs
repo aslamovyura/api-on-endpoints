@@ -16,10 +16,12 @@ namespace Infrastructure.Data
             int retryForAvailability = retry.Value;
             try
             {
-                if (!await dbContext.Addresses.AnyAsync())
+                
+
+                if (!await dbContext.Topics.AnyAsync())
                 {
-                    await dbContext.Addresses.AddRangeAsync(
-                        GetPreconfiguredAddresses());
+                    await dbContext.Topics.AddRangeAsync(
+                        GetPreconfiguredTopics());
 
                     await dbContext.SaveChangesAsync();
                 }
@@ -28,14 +30,6 @@ namespace Infrastructure.Data
                 {
                     await dbContext.Authors.AddRangeAsync(
                         GetPreconfiguredAuthors());
-
-                    await dbContext.SaveChangesAsync();
-                }
-
-                if (!await dbContext.Topics.AnyAsync())
-                {
-                    await dbContext.Topics.AddRangeAsync(
-                        GetPreconfiguredTopics());
 
                     await dbContext.SaveChangesAsync();
                 }
@@ -52,6 +46,16 @@ namespace Infrastructure.Data
                 {
                     await dbContext.Comments.AddRangeAsync(
                         GetPreconfiguredComments());
+
+                    await dbContext.SaveChangesAsync();
+                }
+
+                
+
+                if (!await dbContext.Addresses.AnyAsync())
+                {
+                    await dbContext.Addresses.AddRangeAsync(
+                        GetPreconfiguredAddresses());
 
                     await dbContext.SaveChangesAsync();
                 }
@@ -73,8 +77,9 @@ namespace Infrastructure.Data
         {
             return new List<Address>()
             {
-                new Address("Lenina", "Minsk", "", "Belarus", "220045"),
-                new Address("Sovetskaya", "Gomel", "Gomelskaya obl.", "Belarus", "220000"),
+                new Address(1, "Lenina", "Minsk", "", "Belarus", "220045"),
+                new Address(2, "Sovetskaya", "Gomel", "Gomelskaya obl.", "Belarus", "220000"),
+                new Address(2, "Sovetskaya1", "Mogilev", "Mogilevskaya obl.", "Belarus", "220010"),
             };
         }
 
@@ -84,41 +89,47 @@ namespace Infrastructure.Data
             {
                 new Topic("Nature"),
                 new Topic("War"),
+                new Topic("Economy"),
             };
         }
 
         static List<Post> GetPreconfiguredPosts()
         {
-            var topics = GetPreconfiguredTopics();
+            //var topics = GetPreconfiguredTopics();
+            //var authors = GetPreconfiguredAuthors();
+            //var comments = GetPreconfiguredComments();
 
             return new List<Post>()
             {
-                new Post(topics[0], "Birds", "Some sample content of the article."),
-                new Post(topics[1], "WW2", "Some another sample contect of the article."),
+                new Post(1, 2, "Birds", "Some sample content of the article."),
+                new Post(2, 1, "WW2", "Some another sample contect of the article."),
             };
         }
 
         static List<Author> GetPreconfiguredAuthors()
         {
-            var addresses = GetPreconfiguredAddresses();
-            var posts = GetPreconfiguredPosts();
+            //var addresses = GetPreconfiguredAddresses();
+            //var posts = GetPreconfiguredPosts();
 
             return new List<Author>()
             {
-                new Author("Mike","Pirce",DateTime.Parse("10-02-1984"),addresses[0], posts.GetRange(0,1)),
-                new Author("Andy","Anderson",DateTime.Parse("04-07-1957"),addresses[1], posts.GetRange(1,1)),
+                //new Author("Mike","Pirce",DateTime.Parse("10-02-1984"),addresses[0], posts.GetRange(0,1)),
+                //new Author("Andy","Anderson",DateTime.Parse("04-07-1957"),addresses[1], posts.GetRange(1,1)),
+                new Author("Mike","Pirce",DateTime.Parse("10-02-1984")),
+                new Author("Andy","Anderson",DateTime.Parse("04-07-1957")),
+                new Author("Sam","Smith",DateTime.Parse("01-15-1955")),
             };
         }
 
         static List<Comment> GetPreconfiguredComments()
         {
-            var authors = GetPreconfiguredAuthors();
-            var posts = GetPreconfiguredPosts();
+            //var authors = GetPreconfiguredAuthors();
+            //var posts = GetPreconfiguredPosts();
 
             return new List<Comment>()
             {
-                new Comment(authors[0], posts[0], DateTime.Parse("10-01-2020"),"Foo"),
-                new Comment(authors[1], posts[1], DateTime.Parse("10-02-2020"),"Foo-2"),
+                new Comment(1, 2, DateTime.Parse("10-01-2020"),"Foo"),
+                new Comment(2, 1, DateTime.Parse("10-02-2020"),"Foo-2"),
             };
         }
     }

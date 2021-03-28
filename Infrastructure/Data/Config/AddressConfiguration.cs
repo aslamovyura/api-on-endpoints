@@ -10,6 +10,9 @@ namespace Infrastructure.Data.Config
         {
             builder.HasKey(c => c.Id);
             builder.Property(c => c.Id).IsRequired();
+
+            builder.HasOne(x => x.Author);
+            builder.Property(x => x.AuthorId).IsRequired();
         }
     }
 }
