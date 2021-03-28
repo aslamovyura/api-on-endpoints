@@ -4,4 +4,24 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Specifications\" />
+    <Folder Include="Constants\" />
+    <Folder Include="Entities\" />
+    <Folder Include="Entities\AuthorAggregate\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Entities\PostAggregate\" />
+    <Folder Include="Services\" />
+    <Folder Include="Exceptions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Ardalis.GuardClauses" Version="3.0.1" />
+    <PackageReference Include="Ardalis.Specification" Version="4.1.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+  </ItemGroup>
 </Project>
